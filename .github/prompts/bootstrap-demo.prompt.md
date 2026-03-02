@@ -4,7 +4,7 @@ description: "Generates 3 HVE-Core prompt files (research → plan → implement
 
 # Generate Demo Scaffolding Prompts
 
-Create 3 paste-and-run prompt files that drive the HVE-Core `/task-research` → `/task-plan` → `/task-implement` workflow. Together, these prompts generate all scaffolding files and a 130-minute talk track for a live GitHub Copilot demo for the Ontario Public Sector (Developer Day 2026 — Dry Run 1).
+Create 3 paste-and-run prompt files that drive the HVE-Core `/task-research` → `/task-plan` → `/task-implement` workflow. Together, these prompts generate all scaffolding files and a 130-minute talk track for a live GitHub Copilot demo for the Ontario Public Sector (Developer Day 2026 — Live Demo).
 
 ## Demo Context
 
@@ -212,3 +212,4 @@ The prompt must state clearly: scaffolding is generated during the live demo, no
 ## Success Criteria
 
 The 3 generated prompt files must be complete, self-contained, and paste-and-run. A user with only `README.md` and `bootstrap-demo.prompt.md` can generate the 3 prompts and then run them in sequence to produce all 13 scaffolding files (7 configuration + 3 documentation + 2 scripts + TALK-TRACK.md) without further prompt engineering.
+
