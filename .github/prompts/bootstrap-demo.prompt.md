@@ -4,13 +4,14 @@ description: "Generates 3 HVE-Core prompt files (research → plan → implement
 
 # Generate Demo Scaffolding Prompts
 
-Create 3 paste-and-run prompt files that drive the HVE-Core `/task-research` → `/task-plan` → `/task-implement` workflow. Together, these prompts generate all scaffolding files and a 130-minute talk track for a live GitHub Copilot demo for the Ontario Public Sector (Developer Day 2026 — Live Demo).
+Create 3 paste-and-run prompt files that drive the HVE-Core `/task-research` → `/task-plan` → `/task-implement` workflow. Together, these prompts generate all scaffolding files and a 130-minute talk track for a live GitHub Copilot demo for the Ontario Public Sector (Developer Day 2026 — LiveDemo).
 
 ## Demo Context
 
-* **Duration**: 130 minutes
+* **Duration**: 130 minutes (10:30 AM – 1:50 PM with lunch break 11:40 AM – 1:00 PM)
 * **Audience**: Ontario Public Sector (OPS) developers and leadership
-* **Goal**: Showcase GitHub Copilot building a full-stack Program Approval web application from scratch
+* **Presenters**: **Hammad Aslam** (MC, sets stage, engages audience) and **Emmanuel** (on keyboard, live coding demo)
+* **Goal**: Showcase GitHub Copilot building **CIVIC** (Citizens' Ideas for a Vibrant and Inclusive Community) — a full-stack program submission and approval web application from scratch
 * **Azure**: Resources pre-deployed in resource group `rg-dev-125` (prompt-provided context, not in README.md)
 * **ADO**: Organization `MngEnvMCAP675646`, Project `ProgramDemo-DevDay2026-LiveDemo`
 * **Reference application**: Same application defined in `README.md` (this repo)
@@ -87,7 +88,7 @@ These details are NOT in README.md but must appear in the generated prompts.
 
 ### ADO Work Items (Created via MCP During Act 1 — None Exist Beforehand)
 
-* **Epic**: OPS Program Approval System
+* **Epic**: CIVIC — Citizens' Ideas for a Vibrant and Inclusive Community
   * **Feature**: Infrastructure Setup (pre-deployed in `rg-dev-125`, close immediately)
   * **Feature**: Database Layer — Stories: program_type table, program table, notification table, seed data
   * **Feature**: Backend API — Stories: Spring Boot scaffolding, submit endpoint, list/get endpoints, review endpoint, program-types endpoint
@@ -99,37 +100,43 @@ These details are NOT in README.md but must appear in the generated prompts.
 
 ## Talk Track Structure (130 Minutes)
 
-### Part 1: "Building From Zero" (Minutes 0–70)
+> **Presenters:** 🎙️ **HAMMAD** — MC, sets context, asks questions, holds audience conversation | 💻 **EMMANUEL** — on keyboard, driving all live coding
 
-| Minutes | Act | Role | Content |
-|---------|-----|------|---------|
-| 0–8 | Opening | Presenter | The Problem — show empty repo (only README.md + bootstrap-demo.prompt.md), Azure portal (`rg-dev-125`), empty ADO board |
-| 8–20 | Act 1: The Architect | Architect | Run scaffolding prompts to generate config/docs/scripts; configure MCP; **create ADO Epic/Features/Stories via MCP** |
-| 20–32 | Act 2: The DBA | DBA | 4 Flyway SQL migrations: program_type, program, notification, seed data |
-| 32–52 | Act 3: The Backend Developer | Backend Dev | Spring Boot scaffolding + 5 API endpoints + live curl tests |
-| 52–70 | Act 4: The Frontend Developer | Frontend Dev | React + Ontario DS + bilingual citizen portal + live form submission |
+### Part 1: "Building From Zero" (Minutes 0–70 | ⏰ 10:30 AM – 11:40 AM)
 
-### Cliffhanger (Minute 70)
+| Minutes | Time | Act | Role | Content |
+|---------|------|-----|------|---------|
+| 0–8 | 10:30–10:38 | Opening | 🎙️ HAMMAD | The Problem — show empty repo (only README.md + bootstrap-demo.prompt.md), Azure portal (`rg-dev-125`), empty ADO board |
+| 8–20 | 10:38–10:50 | Act 1: The Architect | 💻 EMMANUEL | Run scaffolding prompts to generate config/docs/scripts; configure MCP; **create ADO Epic/Features/Stories via MCP** |
+| 20–32 | 10:50–11:02 | Act 2: The DBA | 💻 EMMANUEL | 4 Flyway SQL migrations: program_type, program, notification, seed data |
+| 32–52 | 11:02–11:22 | Act 3: The Backend Developer | 💻 EMMANUEL | Spring Boot scaffolding + 5 API endpoints + live curl tests |
+| 52–70 | 11:22–11:40 | Act 4: The Frontend Developer | 💻 EMMANUEL | React + Ontario DS + bilingual CIVIC citizen portal + live form submission |
 
-Citizen can submit programs but Ministry Portal is empty — nobody can approve. Show ADO board with unstarted Ministry stories.
+### 🔥 Cliffhanger (Minute 70 | ⏰ 11:40 AM — LUNCH BREAK)
 
-### Part 2: "Closing the Loop" (Minutes 70–130)
+Citizen can submit CIVIC programs but Ministry Portal is empty — nobody can approve. Show ADO board with unstarted Ministry stories.
 
-| Minutes | Act | Role | Content |
-|---------|-----|------|---------|
-| 70–73 | Recap | Presenter | Quick recap, show database with submissions |
-| 73–87 | Act 5: Completing the Story | Frontend Dev | Ministry review dashboard, detail, approve/reject |
-| 87–100 | Act 6: The QA Engineer | QA | Backend controller tests, frontend component tests, accessibility |
-| 100–107 | Act 7: The DevOps Engineer | DevOps | CI pipeline, Dependabot, secret scanning, GHAS |
-| 107–120 | Act 8: The Full Stack Change | Full Stack | Add `program_budget` field: migration → entity → DTO → API → form → tests |
-| 120–130 | Closing | Presenter | Summary stats, ADO board all done, Q&A |
+> ⏰ **LUNCH BREAK — 11:40 AM to 1:00 PM**
+
+### Part 2: "Closing the Loop" (Minutes 70–130 | ⏰ RESUMING 1:00 PM)
+
+| Minutes | Time | Act | Role | Content |
+|---------|------|-----|------|---------|
+| 70–73 | 1:00–1:03 | Recap | 🎙️ HAMMAD | Quick recap, show database with CIVIC submissions |
+| 73–87 | 1:03–1:17 | Act 5: Completing the Story | 💻 EMMANUEL | Ministry review dashboard, detail, approve/reject |
+| 87–100 | 1:17–1:30 | Act 6: The QA Engineer | 💻 EMMANUEL | Backend controller tests, frontend component tests, accessibility |
+| 100–107 | 1:30–1:37 | Act 7: The DevOps Engineer | 💻 EMMANUEL | CI pipeline, Dependabot, secret scanning, GHAS |
+| 107–120 | 1:37–1:50 | Act 8: The Full Stack Change | 💻 EMMANUEL | Add `program_budget` field: migration → entity → DTO → API → form → tests |
+| 120–130 | 1:50–2:00 | Closing | 🎙️ HAMMAD + 💻 EMMANUEL | Summary stats, ADO board all done, Q&A |
 
 ### Talk Track Formatting Requirements
 
-* Scripted presenter dialogue in blockquotes
-* `Demo actions:` bullet lists with minute markers
-* `Key beat:` and `Audience engagement point:` callouts
-* Tagged commit checkpoints (v0.1.0 through v1.0.0) with fast-forward recovery strategy
+* Two-presenter format: 🎙️ **HAMMAD** for MC narration/audience engagement, 💻 **EMMANUEL** for live coding actions
+* Scripted presenter dialogue in blockquotes with presenter indicator (e.g., `**🎙️ HAMMAD:** > "..."` or `**💻 EMMANUEL:** > "..."`)
+* `Demo actions:` bullet lists with minute markers AND actual times (e.g., `(min 5 | ⏰ 10:35 AM)`)
+* `Key beat (EMMANUEL):` and `Audience engagement point (min X | ⏰ time):` callouts
+* Timestamps in section headers: `(Minutes X–Y | ⏰ HH:MM – HH:MM AM/PM)`
+* Tagged commit checkpoints (v0.1.0 through v1.0.0) with fast-forward recovery strategy — include both minute and actual time in checkpoint table
 * Risk mitigation table (Copilot errors, Azure failures, time overruns, connectivity)
 * Key numbers summary table at the end
 
