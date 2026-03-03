@@ -1,0 +1,185 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+  checks: write        # required by dorny/test-reporter to create check runs
+  pull-requests: write # required to post PR comments
+
+jobs:
+  # ── Backend ────────────────────────────────────────────────────────────────
+  backend:
+    name: Backend – Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build & test with coverage
+        run: mvn --batch-mode verify -Dspring.profiles.active=local
+        # 'verify' runs: compile → test → jacoco:report → jacoco:check
+
+      # Publish Surefire JUnit XML → GitHub Checks + Job Summary
+      - name: Publish backend test results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Backend Tests (JUnit)
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
+          fail-on-error: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Write JaCoCo coverage summary to the workflow job summary
+      - name: Backend coverage summary
+        if: always()
+        run: |
+          JACOCO_CSV="target/site/jacoco/jacoco.csv"
+          if [ ! -f "$JACOCO_CSV" ]; then
+            echo "⚠️ JaCoCo CSV report not found – skipping coverage summary." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          # Aggregate all rows (skip header)
+          COVERED=$(tail -n +2 "$JACOCO_CSV" | awk -F',' '{sum += $5} END {print sum}')
+          MISSED=$(tail  -n +2 "$JACOCO_CSV" | awk -F',' '{sum += $4} END {print sum}')
+          TOTAL=$((COVERED + MISSED))
+          if [ "$TOTAL" -eq 0 ]; then PCT=0; else PCT=$((COVERED * 100 / TOTAL)); fi
+
+          COVERED_B=$(tail -n +2 "$JACOCO_CSV" | awk -F',' '{sum += $9} END {print sum}')
+          MISSED_B=$(tail  -n +2 "$JACOCO_CSV" | awk -F',' '{sum += $8} END {print sum}')
+          TOTAL_B=$((COVERED_B + MISSED_B))
+          if [ "$TOTAL_B" -eq 0 ]; then PCT_B=0; else PCT_B=$((COVERED_B * 100 / TOTAL_B)); fi
+
+          if   [ "$PCT" -ge 80 ]; then ICON="✅"
+          elif [ "$PCT" -ge 60 ]; then ICON="⚠️"
+          else ICON="❌"
+          fi
+
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+          ## $ICON Backend Coverage (JaCoCo)
+
+          | Metric | Covered | Total | Coverage |
+          |--------|--------:|------:|---------:|
+          | Lines  | $COVERED | $TOTAL | **$PCT%** |
+          | Branches | $COVERED_B | $TOTAL_B | **$PCT_B%** |
+
+          > Target: **60% line coverage** (configured in pom.xml)
+          EOF
+
+      # Upload JaCoCo HTML report as downloadable artefact
+      - name: Upload JaCoCo HTML report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
+          retention-days: 7
+
+  # ── Frontend ───────────────────────────────────────────────────────────────
+  frontend:
+    name: Frontend – Build & Test
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: src/frontend
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: src/frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript type-check
+        run: npx tsc --noEmit
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
+        env:
+          CI: true
+
+      # Publish vitest JUnit XML → GitHub Checks + Job Summary
+      - name: Publish frontend test results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Frontend Tests (Vitest)
+          path: src/frontend/test-results/junit.xml
+          reporter: java-junit
+          fail-on-error: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Write vitest coverage summary to the workflow job summary
+      - name: Frontend coverage summary
+        if: always()
+        run: |
+          SUMMARY_JSON="coverage/coverage-summary.json"
+          if [ ! -f "$SUMMARY_JSON" ]; then
+            echo "⚠️ Coverage summary JSON not found – skipping coverage summary." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          LINES=$(node -e "const c=require('./coverage/coverage-summary.json').total; console.log(c.lines.pct)")
+          STMTS=$(node -e "const c=require('./coverage/coverage-summary.json').total; console.log(c.statements.pct)")
+          FUNCT=$(node -e "const c=require('./coverage/coverage-summary.json').total; console.log(c.functions.pct)")
+          BRANC=$(node -e "const c=require('./coverage/coverage-summary.json').total; console.log(c.branches.pct)")
+
+          INT_LINES=$(echo "$LINES" | cut -d. -f1)
+          if   [ "$INT_LINES" -ge 80 ]; then ICON="✅"
+          elif [ "$INT_LINES" -ge 60 ]; then ICON="⚠️"
+          else ICON="❌"
+          fi
+
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+          ## $ICON Frontend Coverage (Vitest + V8)
+
+          | Metric | Coverage |
+          |--------|--------:|
+          | Lines      | **$LINES%** |
+          | Statements | **$STMTS%** |
+          | Functions  | **$FUNCT%** |
+          | Branches   | **$BRANC%** |
+
+          > Target: **60% line coverage** (configured in vite.config.ts)
+          EOF
+
+      - name: Build production bundle
+        run: npm run build
+
+      # Upload coverage and build artefacts
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: frontend-coverage
+          path: src/frontend/coverage/
+          retention-days: 7
+
+      - name: Upload production build
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: src/frontend/dist/
+          retention-days: 7

@@ -13,4 +13,21 @@ export default defineConfig({
       },
     },
   },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: [],
+    reporters: ['default', 'junit', 'github-actions'],
+    outputFile: {
+      junit: 'test-results/junit.xml',
+    },
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json-summary', 'lcov'],
+      reportsDirectory: 'coverage',
+      thresholds: {
+        lines: 60,
+      },
+    },
+  },
 })
