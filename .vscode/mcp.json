@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "azure-devops": {
+      "command": "npx",
+      "args": ["-y", "azure-devops-mcp", "--organization", "MngEnvMCAP675646", "--project", "ProgramDemo-DevDay2026-LiveDemo"]
+    }
+  }
+}
