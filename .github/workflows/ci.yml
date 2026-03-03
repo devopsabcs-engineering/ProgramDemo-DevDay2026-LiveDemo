@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_dispatch: # allow manual trigger from GitHub UI
   push:
     branches: [main, develop]
   pull_request:
