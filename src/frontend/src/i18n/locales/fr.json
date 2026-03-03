@@ -1,0 +1,159 @@
+{
+  "common": {
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "required": "obligatoire",
+    "back": "Retour",
+    "next": "Suivant",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "clear": "Effacer",
+    "noResults": "Aucun résultat trouvé",
+    "actions": "Actions",
+    "view": "Voir",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "submitting": "Soumission en cours..."
+  },
+  "header": {
+    "title": "Demande de programme CIVIC",
+    "skipToMain": "Passer au contenu principal"
+  },
+  "footer": {
+    "copyright": "© Imprimeur du Roi pour l'Ontario, 2026",
+    "accessibility": "Accessibilité",
+    "privacy": "Confidentialité",
+    "contactUs": "Nous joindre"
+  },
+  "nav": {
+    "home": "Accueil",
+    "submitProgram": "Soumettre un programme",
+    "searchPrograms": "Rechercher des programmes",
+    "reviewDashboard": "Tableau de bord des révisions"
+  },
+  "language": {
+    "toggle": "English",
+    "english": "Anglais",
+    "french": "Français"
+  },
+  "citizen": {
+    "form": {
+      "title": "Soumettre une demande de programme",
+      "description": "Utilisez ce formulaire pour soumettre une nouvelle demande de programme à l'examen du personnel du Ministère.",
+      "programName": {
+        "label": "Nom du programme",
+        "placeholder": "Entrez le nom du programme",
+        "required": "Le nom du programme est obligatoire",
+        "maxLength": "Le nom du programme ne peut pas dépasser 200 caractères"
+      },
+      "programDescription": {
+        "label": "Description du programme",
+        "placeholder": "Décrivez votre programme en détail",
+        "hint": "Fournissez une description claire des objectifs du programme et du public cible"
+      },
+      "programType": {
+        "label": "Type de programme",
+        "placeholder": "Sélectionnez un type de programme",
+        "required": "Veuillez sélectionner un type de programme"
+      },
+      "createdBy": {
+        "label": "Votre courriel",
+        "placeholder": "courriel@exemple.com",
+        "hint": "Nous utiliserons cette adresse pour vous contacter au sujet de votre soumission"
+      },
+      "submit": {
+        "label": "Soumettre la demande de programme"
+      }
+    }
+  },
+  "confirmation": {
+    "title": "Soumission réussie",
+    "message": "Votre demande de programme a été soumise avec succès.",
+    "referenceNumber": "Numéro de référence",
+    "whatNext": "Quelle est la prochaine étape?",
+    "nextSteps": "Un réviseur du Ministère évaluera votre demande de programme. Vous recevrez une notification lorsqu'une décision aura été prise.",
+    "submitAnother": "Soumettre un autre programme",
+    "viewStatus": "Voir l'état de la soumission"
+  },
+  "search": {
+    "title": "Rechercher des programmes",
+    "filters": {
+      "status": "État",
+      "programType": "Type de programme",
+      "allStatuses": "Tous les états",
+      "allTypes": "Tous les types"
+    },
+    "results": {
+      "showing": "Affichage de {{from}} à {{to}} sur {{total}} programmes",
+      "empty": "Aucun programme ne correspond à vos critères de recherche"
+    }
+  },
+  "review": {
+    "dashboard": {
+      "title": "Tableau de bord des révisions",
+      "description": "Examiner et traiter les demandes de programmes soumises.",
+      "pendingReview": "Programmes en attente de révision",
+      "stats": {
+        "pending": "En attente",
+        "approved": "Approuvé",
+        "rejected": "Rejeté"
+      }
+    },
+    "detail": {
+      "title": "Révision du programme",
+      "programInfo": "Informations sur le programme",
+      "submissionDetails": "Détails de la soumission",
+      "reviewActions": "Actions de révision",
+      "approve": "Approuver",
+      "reject": "Rejeter",
+      "comments": {
+        "label": "Commentaires du réviseur",
+        "placeholder": "Entrez vos commentaires...",
+        "hint": "Fournissez des commentaires pour le demandeur"
+      }
+    }
+  },
+  "program": {
+    "fields": {
+      "id": "ID",
+      "name": "Nom du programme",
+      "description": "Description",
+      "type": "Type de programme",
+      "status": "État",
+      "submittedAt": "Soumis le",
+      "reviewedAt": "Révisé le",
+      "createdBy": "Soumis par",
+      "reviewerComments": "Commentaires du réviseur"
+    },
+    "status": {
+      "label": "État",
+      "DRAFT": "Brouillon",
+      "SUBMITTED": "Soumis",
+      "APPROVED": "Approuvé",
+      "REJECTED": "Rejeté"
+    }
+  },
+  "error": {
+    "pageNotFound": "Page non trouvée",
+    "pageNotFoundMessage": "La page que vous recherchez n'existe pas.",
+    "serverError": "Erreur du serveur",
+    "serverErrorMessage": "Une erreur inattendue s'est produite. Veuillez réessayer plus tard.",
+    "networkError": "Erreur de réseau",
+    "networkErrorMessage": "Impossible de se connecter au serveur. Veuillez vérifier votre connexion.",
+    "validationError": "Erreur de validation",
+    "returnHome": "Retour à l'accueil"
+  },
+  "accessibility": {
+    "newWindow": "S'ouvre dans une nouvelle fenêtre",
+    "requiredField": "Champ obligatoire",
+    "pagination": {
+      "previous": "Page précédente",
+      "next": "Page suivante",
+      "page": "Page {{number}}"
+    }
+  }
+}

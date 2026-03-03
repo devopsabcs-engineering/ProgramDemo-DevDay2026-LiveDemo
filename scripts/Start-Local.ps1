@@ -56,8 +56,8 @@ function Write-Status([string]$Message, [string]$Type = "Info") {
 # Get script and project root directories
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $projectRoot = Split-Path -Parent $scriptDir
-$backendPath = Join-Path $projectRoot "backend"
-$frontendPath = Join-Path $projectRoot "frontend"
+$backendPath = $projectRoot
+$frontendPath = Join-Path $projectRoot "src\frontend"
 
 Write-Host ""
 Write-Host "╔══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
@@ -121,7 +121,7 @@ if (-not $FrontendOnly) {
             Write-Status "Skipping backend build" "Warning"
         }
         
-        $backendArgs = "/c mvnw spring-boot:run -Dspring.profiles.active=$springProfile"
+        $backendArgs = "/c mvn spring-boot:run -Dspring.profiles.active=$springProfile"
         Start-Process -FilePath "cmd" -ArgumentList $backendArgs -WorkingDirectory $backendPath -WindowStyle Minimized
         Write-Status "Backend server starting on port 8080" "Success"
     } else {

@@ -1,0 +1,159 @@
+{
+  "common": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "required": "required",
+    "back": "Back",
+    "next": "Next",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "noResults": "No results found",
+    "actions": "Actions",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "submitting": "Submitting..."
+  },
+  "header": {
+    "title": "CIVIC Program Request",
+    "skipToMain": "Skip to main content"
+  },
+  "footer": {
+    "copyright": "© King's Printer for Ontario, 2026",
+    "accessibility": "Accessibility",
+    "privacy": "Privacy",
+    "contactUs": "Contact Us"
+  },
+  "nav": {
+    "home": "Home",
+    "submitProgram": "Submit Program",
+    "searchPrograms": "Search Programs",
+    "reviewDashboard": "Review Dashboard"
+  },
+  "language": {
+    "toggle": "Français",
+    "english": "English",
+    "french": "French"
+  },
+  "citizen": {
+    "form": {
+      "title": "Submit a Program Request",
+      "description": "Use this form to submit a new program request for review by Ministry staff.",
+      "programName": {
+        "label": "Program Name",
+        "placeholder": "Enter the program name",
+        "required": "Program name is required",
+        "maxLength": "Program name cannot exceed 200 characters"
+      },
+      "programDescription": {
+        "label": "Program Description",
+        "placeholder": "Describe your program in detail",
+        "hint": "Provide a clear description of the program's goals and target audience"
+      },
+      "programType": {
+        "label": "Program Type",
+        "placeholder": "Select a program type",
+        "required": "Please select a program type"
+      },
+      "createdBy": {
+        "label": "Your Email",
+        "placeholder": "email@example.com",
+        "hint": "We'll use this to contact you about your submission"
+      },
+      "submit": {
+        "label": "Submit Program Request"
+      }
+    }
+  },
+  "confirmation": {
+    "title": "Submission Successful",
+    "message": "Your program request has been submitted successfully.",
+    "referenceNumber": "Reference Number",
+    "whatNext": "What happens next?",
+    "nextSteps": "A Ministry reviewer will assess your program request. You will receive notification when a decision has been made.",
+    "submitAnother": "Submit Another Program",
+    "viewStatus": "View Submission Status"
+  },
+  "search": {
+    "title": "Search Programs",
+    "filters": {
+      "status": "Status",
+      "programType": "Program Type",
+      "allStatuses": "All Statuses",
+      "allTypes": "All Types"
+    },
+    "results": {
+      "showing": "Showing {{from}} to {{to}} of {{total}} programs",
+      "empty": "No programs match your search criteria"
+    }
+  },
+  "review": {
+    "dashboard": {
+      "title": "Review Dashboard",
+      "description": "Review and process submitted program requests.",
+      "pendingReview": "Programs Pending Review",
+      "stats": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      }
+    },
+    "detail": {
+      "title": "Program Review",
+      "programInfo": "Program Information",
+      "submissionDetails": "Submission Details",
+      "reviewActions": "Review Actions",
+      "approve": "Approve",
+      "reject": "Reject",
+      "comments": {
+        "label": "Reviewer Comments",
+        "placeholder": "Enter your comments...",
+        "hint": "Provide feedback for the applicant"
+      }
+    }
+  },
+  "program": {
+    "fields": {
+      "id": "ID",
+      "name": "Program Name",
+      "description": "Description",
+      "type": "Program Type",
+      "status": "Status",
+      "submittedAt": "Submitted",
+      "reviewedAt": "Reviewed",
+      "createdBy": "Submitted By",
+      "reviewerComments": "Reviewer Comments"
+    },
+    "status": {
+      "label": "Status",
+      "DRAFT": "Draft",
+      "SUBMITTED": "Submitted",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected"
+    }
+  },
+  "error": {
+    "pageNotFound": "Page Not Found",
+    "pageNotFoundMessage": "The page you are looking for does not exist.",
+    "serverError": "Server Error",
+    "serverErrorMessage": "An unexpected error occurred. Please try again later.",
+    "networkError": "Network Error",
+    "networkErrorMessage": "Unable to connect to the server. Please check your connection.",
+    "validationError": "Validation Error",
+    "returnHome": "Return to Home"
+  },
+  "accessibility": {
+    "newWindow": "Opens in a new window",
+    "requiredField": "Required field",
+    "pagination": {
+      "previous": "Previous page",
+      "next": "Next page",
+      "page": "Page {{number}}"
+    }
+  }
+}
