@@ -1,8 +1,20 @@
 {
+  "inputs": [
+    {
+      "id": "ado_org",
+      "type": "promptString",
+      "description": "Azure DevOps organization name  (e.g. 'contoso')"
+    }
+  ],
   "servers": {
-    "azure-devops": {
+    "ado": {
+      "type": "stdio",
       "command": "npx",
-      "args": ["-y", "azure-devops-mcp", "--organization", "MngEnvMCAP675646", "--project", "ProgramDemo-DevDay2026-LiveDemo"]
+      "args": ["-y", "@azure-devops/mcp", "${input:ado_org}"]
+    },
+    "figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "type": "http"
     }
   }
 }
